@@ -1,0 +1,153 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+
+/*=== Application Theme Color System ===
+Usage: @import "Theme.css"; in your style and call bellow constants using var(constant)
+*/
+/* ///////////////////////////=================== DEFAULTS =================//////////////////////////////////////////////// */
+
+/* Register Local Fonts https://reactgo.com/add-fonts-to-react-app/ */
+@font-face {
+  font-family: 'SF-Pro-Display-Black';
+  src: local('SF-Pro-Display-Black'), url('./Resources/Fonts/SF-Pro-Display-Black.otf') format('truetype');
+}
+@font-face {
+  font-family: 'SF-Pro-Display-Bold';
+  src: local('SF-Pro-Display-Bold'), url('./Resources/Fonts/SF-Pro-Display-Bold.otf') format('truetype');
+}
+@font-face {
+  font-family: 'SF-Pro-Display-Heavy';
+  src: local('SF-Pro-Display-Heavy'), url('./Resources/Fonts/SF-Pro-Display-Heavy.otf') format('truetype');
+}
+@font-face {
+  font-family: 'SF-Pro-Display-Light';
+  src: local('SF-Pro-Display-Light'), url('./Resources/Fonts/SF-Pro-Display-Light.otf') format('truetype');
+}
+@font-face {
+  font-family: 'SF-Pro-Display-Medium';
+  src: local('SF-Pro-Display-Medium'), url('./Resources/Fonts/SF-Pro-Display-Medium.otf') format('truetype');
+}
+@font-face {
+  font-family: 'SF-Pro-Display-Regular';
+  src: local('SF-Pro-Display-Regular'), url('./Resources/Fonts/SF-Pro-Display-Regular.otf') format('truetype');
+}
+@font-face {
+  font-family: 'SF-Pro-Display-Semibold';
+  src: local('SF-Pro-Display-Semibold'), url('./Resources/Fonts/SF-Pro-Display-Semibold.otf') format('truetype');
+}
+@font-face {
+  font-family: 'SF-Pro-Display-Thin';
+  src: local('SF-Pro-Display-Thin'), url('./Resources/Fonts/SF-Pro-Display-Thin.otf') format('truetype');
+}
+@font-face {
+  font-family: 'SF-Pro-Display-Ultralight';
+  src: local('SF-Pro-Display-Ultralight'), url('./Resources/Fonts/SF-Pro-Display-Ultralight.otf') format('truetype');
+}
+
+/* palette: https://colorhunt.co/palette/225760 */
+:root
+{
+/*     Colors 
+    --color-background: whitesmoke;
+    --color-primary: #f05454;
+    --color-primary-dark: #903749;
+    --color-accent: #30475e;
+    --color-accent2: #39a6a3;
+    --color-accent-dark: #222831;
+     --color-shadow: rgb(34, 40, 49, 0.1); 
+    
+    
+     Fonts 
+    --font-family-black: "SF-Pro-Display-Black" !important;
+    --font-family-bold: "SF-Pro-Display-Bold" !important;
+    --font-family-heavy: "SF-Pro-Display-Heavy" !important;
+    --font-family-light: "SF-Pro-Display-Light" !important;
+    --font-family-medium: "SF-Pro-Display-medium" !important;
+    --font-family-regular: "SF-Pro-Display-Regular" !important;
+    --font-family-semibold: "SF-Pro-Display-Semibold" !important;
+    --font-family-thin: "SF-Pro-Display-Thin" !important;
+    --font-family-ultralight: "SF-Pro-Display-Ultralight" !important;
+    --font-size: 0.8rem;*/
+}
+
+
+html, body
+{
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'SF-Pro-Display-Regular', 'SF-Pro-Display-Medium', 'Ubuntu' !important;
+
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* to hide extra right space in iPhone 5/SE */
+
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  
+  /* Set application's background color */
+  background-color: whitesmoke;
+}
+
+/* Target everything to be a bordered box */
+*
+{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+/* Error messages div design */
+.message-error
+{
+    padding: 10px;
+    border: 1px solid #f05454;
+    background-color: pink;
+    color: #903749;
+    font-weight: 300;
+    font-size: 18px;
+    width: fit-content;
+    margin: 10px;
+    border-radius: 6px;
+    
+}
+
+/* Information messages div design */
+.message-info
+{
+    padding: 10px;
+    border: 1px solid green;
+    background-color: darkseagreen;
+    color: whitesmoke;
+    font-weight: 300;
+    font-size: 18px;
+    width: fit-content;    
+    margin: 10px;
+    border-radius: 6px;
+}
+
+/* Warning messages div design */
+.message-warn
+{
+    padding: 10px;
+    border: 1px solid orange;
+    background-color: moccasin;
+    color: #903749;
+    font-weight: 300;
+    font-size: 18px;
+    width: fit-content;    
+    margin: 10px;
+    border-radius: 6px;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+
+

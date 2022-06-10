@@ -1,0 +1,100 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+/* ///////////////////////////=================== Theme.css which includes defaults =================//////////////////////////////////////////////// */
+@import "../Theme.css";
+/* ///////////////////////////=======================================================================//////////////////////////////////////////////// */
+.background-image
+{
+    width: 100%; 
+    height: 100%;
+    /*background-image: url('./../Resources/Images/DefaultBackground.jpg');*/
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+
+    /*background-color: var(--color-background);*/
+}
+
+
+.header-container
+{
+    margin: -5px 0 0px 0;
+    width: 100%;
+    height: fit-content;
+    padding: 50px;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 30px;
+    font-weight: 100;
+    background-color: #16406a;
+    margin-bottom: 50px;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+
+}
+
+.container
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.containers1
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    background-color: #ffffff;
+    max-width: 1500px;
+    border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+
+}
+
+.containers2
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    background-color: #ffffff;
+    max-width: 1500px;
+    border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+
+}
+
+.left
+{
+    width: 40%;
+    min-width: 300px;
+    font-size: 23px;
+    color: black;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+
+.right
+{
+    width: 40%;
+    min-width: 300px;
+    font-size: 22px;
+    color: black;
+    margin: 23px;
+    border-radius: 5px;
+
+}

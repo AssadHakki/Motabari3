@@ -1,0 +1,189 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+/* ///////////////////////////=================== Theme.css which includes defaults =================//////////////////////////////////////////////// */
+@import "../Theme.css";
+/* ///////////////////////////=======================================================================//////////////////////////////////////////////// */
+.background-image
+{
+    width: 100%; 
+    height: 100%;
+    /*background-image: url('./../Resources/Images/DefaultBackground.jpg');*/
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+
+    /*background-color: var(--color-background);*/
+}
+
+
+.header-container
+{
+    margin: -5px 0 0px 0;
+    width: 100%;
+    height: fit-content;
+    padding: 50px;
+    text-align: center;
+    color: whitesmoke;
+    font-size: 30px;
+    font-weight: 100;
+    text-transform: uppercase;
+    background-color: #16406a;
+    box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+
+
+}
+.header-container p
+{
+    font-family: "SF-Pro-Display-Thin" !important;
+    font-size: 20px;
+
+}
+
+.container
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+
+}
+
+.question-card
+{   width: 75%;
+    height: fit-content;
+    padding: 50px 80px;
+    text-align: left;
+    background-color: white;
+    color: black;
+    box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+    margin: 30px 20px 0;
+    border-radius: 20px 20px;
+}
+
+.question-card a
+{
+    font-family: "SF-Pro-Display-SemiBold" !important;
+    font-size: 22px;
+
+}
+.question-card p
+{
+    font-family: "SF-Pro-Display-Regular" !important;
+    font-size: 18px;
+    margin-bottom: 40px;
+    margin-top: 12px;
+
+}
+
+.question-card h2
+{
+    font-family: "SF-Pro-Display-Bold" !important;
+    font-size: 30px;
+    color: #e73e22;
+    text-transform: uppercase;
+    margin: 10px 0 60px 0;
+    
+
+}
+
+.leftcontent
+{   width: 75%;
+    height: fit-content;
+    padding: 50px 80px;
+    text-align: left;
+    background-color: white;
+    color: black;
+    box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+    margin: 30px 20px 0;
+    border-radius: 20px 20px;
+}
+
+
+.leftcontent h2
+{
+    font-family: "SF-Pro-Display-Bold" !important;
+    font-size: 30px;
+    color: #e73e22;
+    text-transform: uppercase;
+    margin: 10px 0 60px 0;
+    
+
+}
+
+.leftcontent h3
+{
+    font-family: "SF-Pro-Display-SemiBold" !important;
+    font-size: 22px;
+    color: #e73e22;
+    text-transform: uppercase;
+    margin: 20px 0 10px 0;
+
+}
+
+.leftcontent p
+{
+    font-size: 18px;
+}
+
+
+
+
+
+
+
+
+.become-donor-container 
+{
+    width: 100%;
+    background-color: #222831;
+    color: whitesmoke;
+    text-align: center;
+    padding: 100px 33px;
+    margin: 150px 0 -150px 0;
+    font-size: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.become-donor-container a
+{
+    text-decoration: none;
+    background-color: #222831;
+    color: #39a6a3;
+    margin: 20px;
+    border: 1px white solid;
+    padding: 15px;
+    font-size: 20px;
+    width: fit-content;
+}
+.become-donor-container a:hover
+{
+    background-color: #39a6a3;
+    color:  white;
+
+}
+
+
+
+
+
+@media screen and (max-width: 992px) {
+  .question-card {
+    padding: 50px 20px;
+  }
+  .leftcontent {
+    padding: 50px 20px;
+
+  }
+}
+
