@@ -13,15 +13,15 @@ and open the template in the editor.
 
 .background-image
 {
-   width: 100%; 
-   height: 100%;
-   /*background-image: url('./../Resources/Images/DefaultBackground.jpg');*/
-   background-size: cover;
-   background-position: center center;
-   background-repeat: no-repeat; 
-   background-attachment: fixed; 
-   
-   /*background-color: var(--color-background);*/
+    width: 100%; 
+    height: 100%;
+    /*background-image: url('./../Resources/Images/DefaultBackground.jpg');*/
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+
+    /*background-color: var(--color-background);*/
 }
 .container
 {
@@ -55,7 +55,7 @@ and open the template in the editor.
 
 .donneur-details-header
 {
-    
+
     /*width: 100%;
     background-color: var(--color-accent);
     color: white;
@@ -137,20 +137,14 @@ and open the template in the editor.
     color: white;
     border-radius: 10%;
     padding: 5px;
-    font-size: 24px;
+    font-size: 34px;
     font-weight: 900;
     margin: 5px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     transition: 500ms;
     letter-spacing: .3rem;
 }
-.profile-groupe-sanguin:hover
-{
-    cursor: pointer;
-    padding: 20px;
-        font-size: 33px;
-    transition: 500ms;
-}
+
 
 
 .profile-region-ville, .profile-date-naissance, .profile-telephone, .profile-email
@@ -170,4 +164,87 @@ and open the template in the editor.
     height: 1px;
     margin: 15px 0 15px 0;
     background-color: #dddddd;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.info-container-left
+{
+
+    margin: 10px 40px;
+    padding: 15px;
+
+
+}
+.info-container label
+{
+    font-size: 20px;
+    font-weight: 600;
+    color: #1768ac;
+}
+
+.info-container p
+{
+    margin: 5px 0 20px;
+    font-size: 24px;
+    padding: 5px 0 15px;
+}
+
+.info-container-right
+{
+    margin: 10px 40px;
+    padding: 15px;
+}
+
+.notice
+{
+    border: solid 1px red;
+    padding: 20px;
+    margin: 35px;
+}
+
+.notice span
+{
+    color: red;
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 900px) {
+
+    .info-container-left, .info-container-right{
+        text-align: center;
+    }
+    #bloodtype{
+         margin-left: auto;
+    margin-right: auto;
+    }
+    .info-container label
+    {
+        font-size: 16px;
+
+    }
+    .info-container p
+    {
+        font-size: 18px;
+         text-align: center;
+    }
+
+
 }

@@ -55,7 +55,7 @@ and open the template in the editor.
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 }
 .input-form
@@ -65,7 +65,7 @@ and open the template in the editor.
     justify-content: space-between;
     flex-wrap: wrap;
     font-size: 18px;
-    margin: 10px;
+    margin: 10px 50px;
 }
 
 

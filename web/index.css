@@ -12,15 +12,15 @@ and open the template in the editor.
 
 .background-image
 {
-   width: 100%; 
-   height: 100%;
-   /*background-image: url('./../Resources/Images/DefaultBackground.jpg');*/
-   background-size: cover;
-   background-position: center center;
-   background-repeat: no-repeat; 
-   background-attachment: fixed; 
-   
-   /*background-color: var(--color-background);*/
+    width: 100%; 
+    height: 100%;
+    /*background-image: url('./../Resources/Images/DefaultBackground.jpg');*/
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+
+    /*background-color: var(--color-background);*/
 }
 
 
@@ -39,38 +39,38 @@ and open the template in the editor.
 {
     width: 100%;
     font-size: 33px;
-    color: whitesmoke; 
+    color: whitesmoke;
     padding: 10px; 
     margin-bottom: 33px; 
     text-align: center;
 }
 .donors-by-region-item
 {
-    width: 36%;
-    min-width: 300px;
+    width: 212px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    margin: 10px;
+
+    margin: 30px;
     padding: 20px;
-    background-color: #222831;
+    background-color: whitesmoke;
     color: whitesmoke;
     border-radius: 10px;
-    
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    cursor: pointer;
-}
 
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.donors-by-region-item:hover
+{
+    box-shadow: rgb(0 0 0 / 30%) 0px 19px 38px, rgb(0 0 0 / 22%) 0px 15px 12px;}
 
 .donors-by-region-item-title
 {
     font-size: 24px;
-    color: whitesmoke;
+    color: #222831;
     text-transform: uppercase;
     padding: 10px;
-    
+
 }
 
 .donors-by-region-item-total
@@ -83,7 +83,7 @@ and open the template in the editor.
     color: white;
     background: #39a6a3;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
 }
 
 .divider
@@ -103,7 +103,7 @@ and open the template in the editor.
     padding: 100px 33px;
     margin: 0 0 -150px 0;
     font-size: 30px;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -137,7 +137,7 @@ and open the template in the editor.
     padding: 100px 33px;
     margin: 150px 0 0 0;
     font-size: 30px;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -159,5 +159,78 @@ and open the template in the editor.
 {
     background-color: #39a6a3;
     color:  white;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.containers2
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    align-items: center;
+    margin: 180px 0;
+    background-color: whitesmoke;
+    max-width: 100%;
+    /*box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;*/
+
+}
+
+.left
+{
+    width: 40%;
+    min-width: 300px;
+    max-width: 500px;
+    font-size: 23px;
+    color: black;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+
+.right
+{
+    width: 40%;
+    min-width: 300px;
+    font-size: 22px;
+    color: black;
+    margin: 23px;
+    border-radius: 5px;
+
+}
+
+.je-donne a
+{
+    font-size: 20px;
+    font-family: "SF-Pro-Display-Light" !important;
+    padding: 12px 17px;
+    margin: 20px 0;
+    color: white;
+    text-transform: uppercase;
+    background: #39a6a3;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 30%) 0px 19px 38px, rgb(0 0 0 / 22%) 0px 15px 12px;
+    text-decoration: none;
+    border: 1px solid #12223a;
+
+}
+
+.je-donne a:hover
+{
+    background: #247270;
 
 }

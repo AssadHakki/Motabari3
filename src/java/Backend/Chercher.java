@@ -77,28 +77,20 @@ public class Chercher extends HttpServlet {
         try {
             //processRequest(request, response);
             
-            String id_region = request.getParameter("id_region");
             String id_ville = request.getParameter("id_ville");
             String id_groupe_sanguin = request.getParameter("id_groupe_sanguin");
             
-            System.out.println("id_region" +id_region);
             System.out.println("id_ville" +id_ville);
             System.out.println("id_groupe_sanguin" +id_groupe_sanguin);
             
-            String req = "SELECT id_donneur, prenom, nom, ville, (SELECT region FROM Region r WHERE r.id_region = v.id_region) as region, groupe_sanguin FROM Donneur d NATURAL JOIN Ville v NATURAL JOIN GroupeSanguin WHERE disponible = 'oui'";
+            String req = "SELECT * FROM Donneur natural join Ville natural join GroupeSanguin WHERE disponible = 'oui'  " ;
             if(!id_ville.isEmpty())
                 req += " AND id_ville = " + id_ville;
-            else if(!id_region.isEmpty() && id_ville.isEmpty()) // search either by ville or region, not both at the same time
-                req += " AND id_region = " + id_region;
-            else if(!id_groupe_sanguin.isEmpty())
+            if(!id_groupe_sanguin.isEmpty())
                 req += " AND id_groupe_sanguin = " + id_groupe_sanguin;
-            else // all empty 
-            {
-                request.setAttribute("type", "warn");
-                request.setAttribute("message", "Au moins un critère de recherche doit être sélectionné");
-                request.getRequestDispatcher("/Chercher/Chercher.jsp").forward(request, response);
-                return;
-            }
+            
+            
+                
             req += " ORDER BY id_donneur ASC";
                 
             System.out.println(req);

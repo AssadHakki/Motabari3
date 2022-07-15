@@ -26,14 +26,14 @@
 
 
             <div class="leftcontent">
-                <h2>Know About Blood</h2>
-                <h3>Blood Types</h3>
-                <p>Human blood is grouped into four types: <strong>A</strong>, <strong>B</strong>, <strong>AB</strong>, and <strong>O</strong>. Each letter refers to a kind of antigen, or protein, on the surface of red blood cells. For example, the surface of red blood cells in Type A blood has antigens known as A-antigens.</p>
-                <h3>The Rh Factor</h3>
-                <p>Each blood type is also grouped by its <strong><em>Rhesus factor</em></strong>, or Rh factor. Blood is either Rh positive (Rh+) or Rh negative (Rh-). <strong><em>Rhesus</em></strong> refers to another type of antigen, or protein, on the surface of red blood cells. The name Rhesus comes from Rhesus monkeys, in which the protein was discovered.</p>
-                <h3>Blood Transfusions</h3>
-                <p>Blood types become very important when a blood transfusion is necessary. In a blood transfusion, a patient must receive a blood type that is compatible with his or her own blood type—that is, the donated blood must be accepted by the patient&#8217;s own blood. If the blood types are not compatible, red blood cells will clump together, making clots that can block blood vessels and cause death.</p>
-                <p>Type <strong>O–</strong> blood is considered the “universal donor” because it can be donated to people of any blood type. Type <strong>AB+</strong> blood is considered the “universal recipient” because people with this type can receive any blood type.</p>
+                <h2>A savoir sur le sang</h2>
+                <h3>Types de sang</h3>
+                <p>Le sang humain est regroupé en quatre types : <strong>A</strong>, <strong>B</strong>, <strong>AB</strong>, and <strong>O</strong>. Chaque lettre fait référence à un type d'antigène, ou protéine, à la surface des globules rouges. Par exemple, la surface des globules rouges du sang de type A présente des antigènes appelés antigènes A.</p>
+                <h3>Système Rhésus</h3>
+                <p>Chaque groupe sanguin est également regroupé en fonction de son <strong><em>Rhesus factor</em></strong>, ou facteur Rh. Le sang est soit Rh positif (Rh+), soit Rh négatif (Rh-). Le facteur <strong><em>Rhesus</em></strong> fait référence à un autre type d'antigène, ou protéine, à la surface des globules rouges. Le nom Rhésus vient des singes Rhésus, chez qui cette protéine a été découverte.</p>
+                <h3>transfusions sanguines</h3>
+                <p>Les groupes sanguins deviennent très importants lorsqu'une transfusion sanguine est nécessaire. Lors d'une transfusion sanguine, un patient doit recevoir un groupe sanguin compatible avec son propre groupe sanguin, c'est-à-dire que le sang donné doit être accepté par le sang du patient. Si les groupes sanguins ne sont pas compatibles, les globules rouges s'agglutinent et forment des caillots qui peuvent bloquer les vaisseaux sanguins et entraîner la mort.</p>
+                <p>Le sang de type <strong>O–</strong>  est considéré comme le "donneur universel" car il peut être donné à des personnes de tous les groupes sanguins. Le sang du groupe  <strong>AB+</strong>  est considéré comme le "receveur universel", car les personnes de ce groupe peuvent recevoir n'importe quel groupe sanguin.</p>
             </div>	
 
 

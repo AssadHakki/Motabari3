@@ -33,20 +33,7 @@
                 <hr style="margin-bottom: 20px;">
                 <div class="search-form-inputs-container">
 
-                    <div class="input-form">
-                       <label>Region:</label>
-                        <select name="id_region">
-                               <option value="">Sélectionnez une région</option>
-                               <%
-                                   // Get vills of selected region above
-                                   final ResultSet regions = Connexion.Seconnecter().createStatement().executeQuery("SELECT DISTINCT id_region, region FROM Region ORDER BY region ASC");
-                                   while(regions.next())
-                                   {%>
-                                            <option value=<%="'"+regions.getObject(1)+"'"%>><%= regions.getObject(2) %></option>
-                                   <%}
-                               %>
-                        </select>
-                    </div>
+                    
 
                     <div class="input-form">
                        <label>Ville:</label>
@@ -125,14 +112,14 @@
                               <div class="search-result-item">
                                    <img class="search-result-item-profile-image" src="${pageContext.request.contextPath}/Resources/Images/DefaultProfileImage.png" width="128px" alt="Profile picture"/>
                                    <div class="search-result-details">
-                                       <div class="search-result-item-fullname"><%= R.getObject("prenom") + " " + R.getObject("nom") %></div>
-                                        <div class="search-result-item-groupe-sanguin"><%= R.getObject("groupe_sanguin") %></div>
-                                        <div class="search-result-item-region-ville"><%= "(" + R.getObject("region") + ") " + R.getObject("ville") %></div>
+                                       <div class="search-result-item-fullname" style="text-transform: capitalize;"><%= R.getObject(5) + " " + R.getObject(4) %></div>
+                                         <div class="search-result-item-groupe-sanguin"><%= R.getObject(12) %></div>
+                                        <div class="search-result-item-region-ville"><%=  R.getObject(11) %></div>
                                    </div>
                                     
                                    <a class="search-result-item-view-donor fa fa-arrow-right" href=<%= request.getContextPath() + "/ViewDonor/ViewDonor.jsp?id_donneur=" + R.getObject("id_donneur")%> style="text-decoration: none;">
                                      <!-- &nbsp; Voir Donneur-->
-                                    </a>
+                                    </a> 
                               </div>
                             <%}
                             while(R.next());

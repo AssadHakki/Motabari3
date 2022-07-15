@@ -71,6 +71,9 @@ and open the template in the editor.
 {
     font-family: "SF-Pro-Display-SemiBold" !important;
     font-size: 22px;
+        color: #16406a;
+
+   
 
 }
 .question-card p
@@ -121,7 +124,7 @@ and open the template in the editor.
 {
     font-family: "SF-Pro-Display-SemiBold" !important;
     font-size: 22px;
-    color: #e73e22;
+    color: #16406a;
     text-transform: uppercase;
     margin: 20px 0 10px 0;
 

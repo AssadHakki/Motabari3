@@ -39,19 +39,49 @@
         <!-- Carousel Slider END -->
 
 
+        <div class="containers2">
+
+
+            <div class="right">
+                <div>
+                    <h1 style="color: #39a6a3;">LES BESOINS<br>SONT QUOTIDIENS.</h1>
+                    <p style="margin-bottom: 80px;">Chaque jour, nous avons besoin de sang pour accompagner une femme qui accouche, une personne accidentée de la route, un malade atteint de cancer... Les situations sont aussi variées que régulières. L’acte volontaire et bénévole de donner son sang est donc irremplaçable. Vous êtes irremplaçables ! </p>
+                    
+
+                    <%                         // if user is not logged in, ask him/her to register and become a donor
+                         if (session.getAttribute("id_donneur") == null) {%>
+                         <div class="je-donne"><a href="${pageContext.request.contextPath}/Register/Register.jsp">Je donne mon sang</a></div> 
+                    <%}
+                    %>
+                </div>
+            </div>
+
+            <img class="left" src="${pageContext.request.contextPath}/Resources/Images/girl.jpg" >
+        </div>
+
+
+
+
+
+
+
+
 
 
         <div class="donors-by-region-container">
-            <div class="donors-by-region-container-title">Nombre de Donneurs disponibles en ce moment par région :</div>
+            <div class="donors-by-region-container-title" style="text-transform: uppercase;">Le nombre de donneurs par ville :</div>
 
-            <%                //String req = "SELECT COUNT(d.id_donneur) as total, region FROM Donneur d NATURAL JOIN Region WHERE disponible = 'oui' GROUP BY region ORDER BY region ASC";
-                String req = "SELECT COUNT(distinct d.id_donneur) as total, region FROM Donneur d NATURAL JOIN Ville v JOIN Region r ON r.id_region = v.id_region WHERE disponible = 'oui' GROUP BY region ORDER BY region ASC";
+            <%                String req = "select  distinct t.id_ville , s.ville , s.total from  (SELECT ville , COUNT(distinct id_donneur) as total FROM Donneur  NATURAL JOIN Ville  WHERE disponible = 'oui' GROUP BY ville ORDER BY total DESC) s join (select * from Donneur natural join Ville ) t  on s.ville = t.ville order by s.total DESC";
                 ResultSet R = Connexion.Seconnecter().createStatement().executeQuery(req);
                 while (R.next()) {%>
+
             <div class="donors-by-region-item">
-                <div class="donors-by-region-item-title"><%= R.getString("region")%></div>
+                <div class="donors-by-region-item-title"><%= R.getString("ville")%></div>
                 <div class="divider"></div>
-                <div class="donors-by-region-item-total"><%= R.getString("total")%> Donneurs</div>
+                <div class="donors-by-region-item-total">
+                    <%= R.getString("total")%> Donneurs
+                </div> 
+               
             </div>
             <%}
             %>

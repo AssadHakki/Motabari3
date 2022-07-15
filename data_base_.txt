@@ -1,0 +1,271 @@
+DROP TABLE Donneur;
+DROP TABLE GroupeSanguin;
+DROP TABLE Ville;
+
+
+
+
+
+CREATE TABLE Ville
+(
+  id_ville NUMBER PRIMARY KEY,
+  ville VARCHAR2(40) NOT NULL
+
+);
+
+
+
+INSERT INTO Ville VALUES(1, 'Casablanca');
+INSERT INTO Ville VALUES(2, 'Fes');
+INSERT INTO Ville VALUES(3, 'Marrakech');
+INSERT INTO Ville VALUES(4, 'Tanger');
+INSERT INTO Ville VALUES(5, 'Tetouan');
+INSERT INTO Ville VALUES(6, 'Meknes');
+INSERT INTO Ville VALUES(7, 'Oujda');
+INSERT INTO Ville VALUES(8, 'Rabat');
+INSERT INTO Ville VALUES(9, 'Kenitra');
+INSERT INTO Ville VALUES(10, 'Agadir');
+INSERT INTO Ville VALUES(11, 'El Jadida');
+INSERT INTO Ville VALUES(12, 'Laayoun');
+INSERT INTO Ville VALUES(13, 'Khouribga');
+
+
+
+
+
+CREATE TABLE GroupeSanguin
+(
+    id_groupe_sanguin  NUMBER PRIMARY KEY,
+    groupe_sanguin VARCHAR2(3) NOT NULL,
+    
+    CONSTRAINT GCHECK_group_sanguin CHECK(UPPER(groupe_sanguin) IN ('A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'))
+);
+
+INSERT INTO GroupeSanguin VALUES(1, 'O+');
+INSERT INTO GroupeSanguin VALUES(2, 'O-');
+INSERT INTO GroupeSanguin VALUES(3, 'A+');
+INSERT INTO GroupeSanguin VALUES(4, 'A-');
+INSERT INTO GroupeSanguin VALUES(5, 'B+');
+INSERT INTO GroupeSanguin VALUES(6, 'B-');
+INSERT INTO GroupeSanguin VALUES(7, 'AB+');
+INSERT INTO GroupeSanguin VALUES(8, 'AB-');
+
+
+CREATE TABLE Donneur
+(
+    id_donneur NUMBER PRIMARY KEY,
+    prenom VARCHAR2(20) NOT NULL,
+    nom VARCHAR2(20) NOT NULL,
+    id_ville NUMBER NOT NULL,
+    id_groupe_sanguin  NUMBER NOT NULL,
+    date_naissance DATE NOT NULL,
+    telephone VARCHAR2(15) NOT NULL UNIQUE,
+    email VARCHAR2(128) NOT NULL UNIQUE,
+    password VARCHAR2(256) NOT NULL,
+    disponible VARCHAR2(3) DEFAULT 'oui',
+    
+    -- FOREIGN KEYS --
+    CONSTRAINT DFK_id_ville FOREIGN KEY(id_ville) REFERENCES Ville(id_ville) ON DELETE CASCADE,
+    CONSTRAINT DFK_id_groupe_sanguin FOREIGN KEY(id_groupe_sanguin) REFERENCES GroupeSanguin(id_groupe_sanguin) ON DELETE CASCADE,
+    
+    -- CHECKS --
+    CONSTRAINT DCHECK_prenom CHECK(LENGTH(prenom) > 3 AND LENGTH(prenom) < 20),
+    CONSTRAINT DCHECK_nom CHECK(LENGTH(nom) > 2 AND LENGTH(nom) < 20),
+    CONSTRAINT DCHECK_password CHECK(LENGTH(password) >= 3),
+    CONSTRAINT DCHECK_email CHECK(REGEXP_LIKE(email, '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$')),
+    CONSTRAINT DCHECK_telephone CHECK(REGEXP_LIKE(telephone, '^(\+[0-9]{1,3}|0)([ \-_/]*)(\d[ \-_/]*){9}$')),
+    CONSTRAINT DCHECK_disponible CHECK(lower(disponible) in ('oui', 'non'))
+);
+
+
+DROP SEQUENCE ID_COUNTER;
+CREATE SEQUENCE ID_COUNTER START WITH 1 INCREMENT BY 1;
+
+--https://www.generatedata.com/
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Rania','Sahimi',1,4,TO_DATE('1989/12/14', 'yyyy/mm/dd'),'0683838395','adipiscing.ligula.Aenean@necmollisvitae.ca',33199445,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ahmed','Sinaceur',2,5,TO_DATE('1965/07/20', 'yyyy/mm/dd'),'0632546039','eros@egetvolutpatornare.edu',4516894,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Khalid','Joumari',3,5,TO_DATE('1975/07/29', 'yyyy/mm/dd'),'+212313114792','est.mauris.rhoncus@congueelitsed.ca',16504477,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Mohammed','Menebhi',4,5,TO_DATE('1992/09/04', 'yyyy/mm/dd'),'0666448320','tellus@Classaptenttaciti.edu',121644397,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Laila','Skali',5,7,TO_DATE('1995/02/14', 'yyyy/mm/dd'),'0695756263','sed.turpis@Praesenteunulla.edu',80103092,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Samir','Zrika',6,7,TO_DATE('1991/05/01', 'yyyy/mm/dd'),'0643387686','consequat@eleifendnondapibus.ca',47790478,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Sami','Lalami',7,3,TO_DATE('1997/05/15', 'yyyy/mm/dd'),'0680223219','aliquet.metus.urna@montesnascetur.edu',60363068,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ayoub','Tabbal',8,7,TO_DATE('1961/02/19', 'yyyy/mm/dd'),'0641745290','in.consequat@mollisDuis.org',37678643,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Imad','Daoud',9,4,TO_DATE('1999/03/06', 'yyyy/mm/dd'),'+212226682067','aliquam@arcuetpede.co.uk',37555089,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Nouhaila','Lemsih',10,8,TO_DATE('1994/03/16', 'yyyy/mm/dd'),'0649496885','non.bibendum.sed@dolor.net',6861762,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Roukaia','Janani',11,6,TO_DATE('1973/08/04', 'yyyy/mm/dd'),'+212546113066','sed.sem@tristiquepellentesquetellus.net',80786224,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Jannat','Bikri',12,7,TO_DATE('1975/09/08', 'yyyy/mm/dd'),'+212131430181','libero.et@aclibero.edu',37088057,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Houria','Daoud',13,2,TO_DATE('1967/03/12', 'yyyy/mm/dd'),'+212286127082','porttitor@lectusquis.ca',8168697,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Aabir','doulmi',1,8,TO_DATE('1970/12/05', 'yyyy/mm/dd'),'0654464696','eget@non.ca',82567638,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Fatima Ezzahraa','Allal',2,8,TO_DATE('1963/12/12', 'yyyy/mm/dd'),'0601770542','leo.elementum.sem@vehiculaetrutrum.ca',28224176,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Zineb','Boukous',3,1,TO_DATE('1967/06/22', 'yyyy/mm/dd'),'0692681106','est.arcu@Donecporttitor.edu',118583251,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Sara','Rabi',4,6,TO_DATE('1979/02/02', 'yyyy/mm/dd'),'+212936510622','quis.turpis.vitae@CuraePhasellus.ca',102945766,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Adam','Rhissassi',5,2,TO_DATE('1981/10/26', 'yyyy/mm/dd'),'+212817152730','scelerisque.scelerisque.dui@nisiCumsociis.org',87314306,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Abellah','Abouzeid',6,3,TO_DATE('1981/05/27', 'yyyy/mm/dd'),'+212654564039','eget.volutpat.ornare@atvelit.org',78837915,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Youssef','Yaktine',7,3,TO_DATE('1972/11/07', 'yyyy/mm/dd'),'+212534173238','dapibus@elit.ca',70858537,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Youness','Hamed',8,7,TO_DATE('1984/03/06', 'yyyy/mm/dd'),'+212527548883','rutrum@loremDonec.co.uk',36253188,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Hamid','Siqli',9,5,TO_DATE('1971/06/30', 'yyyy/mm/dd'),'0612489855','ut@sed.ca',58713040,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Fouad','Qasim',10,4,TO_DATE('1997/01/23', 'yyyy/mm/dd'),'+212437302929','sagittis@blanditviverraDonec.ca',53971087,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Abdelaziz','El Aoufi',11,8,TO_DATE('1987/04/12', 'yyyy/mm/dd'),'0675004738','mauris.id.sapien@pedeultricesa.com',13296535,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Allal','Sahimi',12,6,TO_DATE('1987/05/15', 'yyyy/mm/dd'),'+212161722314','dui.Suspendisse.ac@Duis.edu',26944141,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Soufiane','El-Ouadie',13,8,TO_DATE('1966/06/21', 'yyyy/mm/dd'),'+212481544100','aliquet@quam.co.uk',85094424,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Mouad','Laabi',1,1,TO_DATE('1976/12/28', 'yyyy/mm/dd'),'+212528206548','Integer@iaculisquis.net',76934337,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Aniss','Siqli',2,5,TO_DATE('2001/01/06', 'yyyy/mm/dd'),'+212610811483','quis@consectetuer.org',57181815,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Anass','Idrissi',3,1,TO_DATE('1992/02/27', 'yyyy/mm/dd'),'0619637196','mauris.elit.dictum@semperauctor.com',57363909,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Khalid','Laabi',4,8,TO_DATE('2002/05/25', 'yyyy/mm/dd'),'0670738055','sit.amet.luctus@lacusNulla.edu',14748021,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Samir','Rabi',5,3,TO_DATE('1995/03/23', 'yyyy/mm/dd'),'0647767430','sagittis@mauriseu.org',103366975,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ayoub','Lamrani',6,3,TO_DATE('1989/11/07', 'yyyy/mm/dd'),'+212213171853','in@adipiscing.com',62269427,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'mohammed','Benjelloun',7,1,TO_DATE('1961/08/02', 'yyyy/mm/dd'),'+212113743576','nibh.Donec@acnulla.ca',2840139,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Achraf','Guennoun',8,3,TO_DATE('1987/09/15', 'yyyy/mm/dd'),'0628312935','dolor.sit@dictummagna.net',47876380,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Said','Aoufi',9,7,TO_DATE('1973/05/23', 'yyyy/mm/dd'),'+212754254861','ultrices.posuere.cubilia@mipedenonummy.co.uk',54581378,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Amal','Ibrahim',10,6,TO_DATE('1971/03/05', 'yyyy/mm/dd'),'+212400694464','vel@Fuscealiquet.org',93817824,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ibraim','Samie',11,1,TO_DATE('1972/10/15', 'yyyy/mm/dd'),'+212914042665','diam.Pellentesque.habitant@semper.ca',12709093,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Rachid','Bouzfour',12,8,TO_DATE('1988/03/16', 'yyyy/mm/dd'),'0646287078','nibh.Aliquam@loremvehicula.com',6366529,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Rachida','Qamar',1,2,TO_DATE('1962/11/13', 'yyyy/mm/dd'),'+212799298375','libero@Pellentesque.edu',13237133,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Taha','El Hajjam',2,3,TO_DATE('1997/12/22', 'yyyy/mm/dd'),'+212458507200','sit.amet.consectetuer@egestasSedpharetra.ca',36492847,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Yasser','Ghallab',3,8,TO_DATE('1987/12/30', 'yyyy/mm/dd'),'+212417652869','Duis.dignissim.tempor@enim.org',118313852,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Jaad','Abdessalam',4,1,TO_DATE('1998/11/10', 'yyyy/mm/dd'),'+212223447853','aliquam.arcu.Aliquam@nondapibus.edu',110357789,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Tamer','Mounir',5,5,TO_DATE('2001/07/24', 'yyyy/mm/dd'),'0685523720','ac@porttitorscelerisqueneque.edu',79132454,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Mohammed','Serghini',6,6,TO_DATE('1984/08/22', 'yyyy/mm/dd'),'+212518122892','aliquet.diam.Sed@Maurisvel.org',32284105,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Abdelilah','Serhane',7,2,TO_DATE('1974/09/18', 'yyyy/mm/dd'),'+212894759551','at.augue.id@vitaealiquameros.edu',92360439,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Nora','bannon',8,6,TO_DATE('1979/04/05', 'yyyy/mm/dd'),'0665008028','lacus@risus.co.uk',114922236,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Khalil','Ksikes',9,2,TO_DATE('1963/10/18', 'yyyy/mm/dd'),'0659479820','Sed.neque@maurissagittis.ca',31266239,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Malik','Diouri',10,5,TO_DATE('1988/08/22', 'yyyy/mm/dd'),'0667228789','mauris.id.sapien@cursus.net',106121538,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Malika','Hajji',11,8,TO_DATE('1988/05/21', 'yyyy/mm/dd'),'+212542711647','tempus.scelerisque@adipiscing.co.uk',6399168,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Nora','Tazi',12,1,TO_DATE('1986/03/11', 'yyyy/mm/dd'),'+212968755589','Aliquam@aceleifend.com',52888515,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Fatima','chawki',1,4,TO_DATE('1960/01/11', 'yyyy/mm/dd'),'0627516203','vehicula.Pellentesque@Curabitur.com',114030413,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Majda','Sabbag',2,3,TO_DATE('1988/07/19', 'yyyy/mm/dd'),'+212212018444','Curae.Phasellus@Nuncullamcorpervelit.com',68704737,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Souhail','Boras',3,4,TO_DATE('1960/10/06', 'yyyy/mm/dd'),'+212324973676','vitae@orci.edu',30815368,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Faycal','kriteh',4,3,TO_DATE('1966/07/23', 'yyyy/mm/dd'),'0684334009','at.iaculis.quis@leoMorbi.net',60605536,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ismail','moujahid',5,5,TO_DATE('1994/05/07', 'yyyy/mm/dd'),'+212734456444','et@et.ca',78423237,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Kamal','Chafik',6,7,TO_DATE('1988/02/27', 'yyyy/mm/dd'),'+212360022544','ultricies.dignissim@eget.net',12726769,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Rachida','mejjati',7,7,TO_DATE('1998/02/22', 'yyyy/mm/dd'),'+212592158009','Nam@ac.ca',46379081,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Amal','Amal',8,2,TO_DATE('1983/10/20', 'yyyy/mm/dd'),'+212367861088','eget@nequesed.org',29618963,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Nawal','ouelhri',9,4,TO_DATE('1978/09/01', 'yyyy/mm/dd'),'0698142829','nec.enim@ideratEtiam.ca',55965577,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Samir','rahmi',10,4,TO_DATE('1990/10/12', 'yyyy/mm/dd'),'+212387095720','enim.nisl.elementum@ipsumporta.net',75925534,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Fouad','azzaz',11,8,TO_DATE('1983/06/03', 'yyyy/mm/dd'),'0670121726','Cras.interdum@et.co.uk',63012842,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ayoub','lmrani',12,8,TO_DATE('1992/01/19', 'yyyy/mm/dd'),'+212795604095','malesuada.vel.venenatis@egestasSedpharetra.co.uk',108632047,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Lamiaa','sabik',1,5,TO_DATE('1983/12/18', 'yyyy/mm/dd'),'0629976295','rhoncus@aliquet.co.uk',8032726,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Badia','saadoon',2,1,TO_DATE('1989/03/09', 'yyyy/mm/dd'),'0683600394','dictum.cursus@ametrisus.edu',32962204,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Malak','tamri',3,4,TO_DATE('1991/03/21', 'yyyy/mm/dd'),'0647619092','dictum.eu.eleifend@sapienimperdietornare.com',117410985,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Lamiss','seddam',4,2,TO_DATE('1986/05/18', 'yyyy/mm/dd'),'0684510454','dolor.sit@Duisvolutpatnunc.com',7506967,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Rachid','alaoui',5,6,TO_DATE('1987/12/30', 'yyyy/mm/dd'),'0626736200','Cum@eratsemperrutrum.org',34398439,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Saida','laabi',6,8,TO_DATE('1970/06/08', 'yyyy/mm/dd'),'+212998696970','Duis.risus@velit.com',18730623,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Amine','mouaden',7,8,TO_DATE('1963/04/13', 'yyyy/mm/dd'),'+212046686699','Praesent@magnaCrasconvallis.org',33532704,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Saad','kaabi',8,5,TO_DATE('1966/09/05', 'yyyy/mm/dd'),'+212214347245','nec.luctus@sempertellusid.org',74510775,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Hanane','ouardi',9,6,TO_DATE('1967/01/14', 'yyyy/mm/dd'),'0634395823','a.nunc@Aeneanegestashendrerit.com',2767261,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Hanaa','mbenza',10,4,TO_DATE('1985/03/17', 'yyyy/mm/dd'),'+212421287796','cursus@a.com',76187546,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Rania','nekkach',11,3,TO_DATE('1976/10/23', 'yyyy/mm/dd'),'0607685995','sodales@necorci.co.uk',9044925,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ziad','karti',12,7,TO_DATE('1971/12/01', 'yyyy/mm/dd'),'0623391122','non.enim.commodo@id.edu',89269057,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Aymane','karouchi',13,4,TO_DATE('1986/02/26', 'yyyy/mm/dd'),'+212363976864','aliquet.diam.Sed@adipiscing.com',38311091,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Achraf','bidodane',1,8,TO_DATE('1966/02/04', 'yyyy/mm/dd'),'+212585924229','quis.pede.Praesent@Utsagittislobortis.org',63924495,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Rania','sabila',2,5,TO_DATE('1999/04/28', 'yyyy/mm/dd'),'+212912095810','ac.mattis.semper@Proinsedturpis.com',83967424,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ibtissam','hanine',3,1,TO_DATE('1977/07/06', 'yyyy/mm/dd'),'0639474341','Suspendisse.dui@vel.ca',98577056,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Issam','rahim',4,8,TO_DATE('1970/07/14', 'yyyy/mm/dd'),'+212110647025','Quisque.porttitor@Quisque.org',39377465,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Amira','rahimi',5,2,TO_DATE('1978/06/22', 'yyyy/mm/dd'),'+212768278349','Cras.dolor@nonsollicitudin.ca',73484048,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Amir','moulay',6,7,TO_DATE('1970/07/05', 'yyyy/mm/dd'),'0681054257','Phasellus.elit.pede@id.com',66101413,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Iman','tayeb',9,5,TO_DATE('1980/10/02', 'yyyy/mm/dd'),'0614631763','rutrum.lorem.ac@mifelis.com',85419669,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Firass','charit',7,5,TO_DATE('1991/01/28', 'yyyy/mm/dd'),'+212165372703','risus@antelectusconvallis.org',120915508,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Amine','mendili',8,5,TO_DATE('1985/05/31', 'yyyy/mm/dd'),'0694649575','faucibus.id@convallisante.net',110051438,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Malik','amloud',9,7,TO_DATE('1976/08/09', 'yyyy/mm/dd'),'0652026117','erat.Vivamus.nisi@erosNam.com',17157207,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Madiha','louza',10,7,TO_DATE('1978/04/16', 'yyyy/mm/dd'),'+212718519692','gravida@tellus.edu',83236497,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Aabla','zitouna',11,2,TO_DATE('1964/02/01', 'yyyy/mm/dd'),'+212742265974','justo.sit.amet@morbitristiquesenectus.com',45234822,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Donia','bennajeh',12,2,TO_DATE('1960/06/13', 'yyyy/mm/dd'),'0648172385','augue.id@magnaPraesentinterdum.com',42689483,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Rachida','Tarik',13,8,TO_DATE('1984/12/05', 'yyyy/mm/dd'),'+212074598644','lacinia@utsem.com',48995072,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Firdawss','tani',1,6,TO_DATE('1961/12/16', 'yyyy/mm/dd'),'0651453496','Donec@Fusce.ca',86381214,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Kabira','benjida',2,7,TO_DATE('1963/03/22', 'yyyy/mm/dd'),'0635751960','et.rutrum.eu@hendreritnequeIn.co.uk',7295698,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Sabah','sara',3,5,TO_DATE('1994/04/03', 'yyyy/mm/dd'),'+212183262187','mi@quam.net',34533444,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Abdessamie','benjoudi',4,3,TO_DATE('1996/02/05', 'yyyy/mm/dd'),'+212974608726','amet@necluctusfelis.org',16468795,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Abdellah','ahman',5,2,TO_DATE('1995/02/28', 'yyyy/mm/dd'),'+212570298590','mi@facilisi.ca',61177421,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Karim','ouahman',6,7,TO_DATE('1994/06/10', 'yyyy/mm/dd'),'0619033327','Mauris.ut.quam@parturientmontes.org',66316043,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Bader','ouballa',7,7,TO_DATE('1978/12/05', 'yyyy/mm/dd'),'0646892750','vitae.mauris.sit@CurabiturdictumPhasellus.com',104449375,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Reda','allali',8,6,TO_DATE('1974/05/10', 'yyyy/mm/dd'),'0696509662','sociosqu.ad@Integer.net',6147761,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Khalid','ouaich',9,3,TO_DATE('1983/06/04', 'yyyy/mm/dd'),'0685527558','lacus.Quisque@consectetuercursuset.com',15004505,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Abderrahim','soussi',10,8,TO_DATE('1963/12/01', 'yyyy/mm/dd'),'0658138810','sit@malesuadafames.ca',59500997,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Taha','Hamish',11,2,TO_DATE('2000/11/03', 'yyyy/mm/dd'),'0661307803','sem@pulvinararcuet.co.uk',68833351,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Touhami','el ghlimmi',12,1,TO_DATE('1992/11/24', 'yyyy/mm/dd'),'+212561339730','elit.Aliquam.auctor@adipiscingelitEtiam.co.uk',64518998,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Nadir','bekri',1,3,TO_DATE('2000/02/11', 'yyyy/mm/dd'),'0634978908','nec@Vestibulum.co.uk',97819490,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Kamal','bekkari',2,8,TO_DATE('1964/10/25', 'yyyy/mm/dd'),'0693580541','diam.dictum@acmieleifend.edu',66444337,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Louay','jebbour',3,6,TO_DATE('1992/09/29', 'yyyy/mm/dd'),'0692947785','semper@maurissitamet.co.uk',22564888,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Hicham','bakouri',4,5,TO_DATE('1960/09/17', 'yyyy/mm/dd'),'+212172022987','lorem.ac.risus@rutrum.net',40744340,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Aziz','benkhada',5,8,TO_DATE('1990/01/26', 'yyyy/mm/dd'),'+212636315610','commodo.tincidunt@justofaucibus.org',62000435,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Aziza','chraibi',6,3,TO_DATE('1995/05/17', 'yyyy/mm/dd'),'0685399099','ante@rhoncusNullam.co.uk',119323995,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Roary','bouchbouch',7,5,TO_DATE('1966/08/09', 'yyyy/mm/dd'),'+212558134703','elit@elitdictum.ca',37498448,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Farrah','Marah',8,2,TO_DATE('1972/01/30', 'yyyy/mm/dd'),'0691832039','Duis.sit@risus.org',81530349,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Sanaa','Quamar',9,3,TO_DATE('1973/03/24', 'yyyy/mm/dd'),'0631543251','accumsan.interdum@consequatpurus.ca',106494332,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Adnane','chafik',10,3,TO_DATE('1986/05/18', 'yyyy/mm/dd'),'+212173656906','id.risus.quis@In.net',12734361,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Mehdi','miloudi',11,5,TO_DATE('1984/07/08', 'yyyy/mm/dd'),'+212794082102','Integer.aliquam.adipiscing@enim.co.uk',104265857,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Haroun','seddam',12,6,TO_DATE('1973/03/03', 'yyyy/mm/dd'),'+212418942727','montes.nascetur.ridiculus@Sed.com',43809723,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Saad','raji',13,4,TO_DATE('2001/01/05', 'yyyy/mm/dd'),'0626293184','urna.Vivamus@Nullaeget.co.uk',81686530,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Youssef','haroun',1,4,TO_DATE('1969/01/10', 'yyyy/mm/dd'),'0601336103','dapibus.quam@sedleo.edu',113587959,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Youness','khettab',2,3,TO_DATE('1988/11/11', 'yyyy/mm/dd'),'0636183769','Cras.vehicula@eteuismodet.net',27243000,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Asaad','achemlal',3,8,TO_DATE('1984/11/21', 'yyyy/mm/dd'),'0675347354','luctus@duilectusrutrum.edu',112399569,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Laila','wakile',4,2,TO_DATE('1967/08/28', 'yyyy/mm/dd'),'0656858615','Donec.est@temporeratneque.net',120096196,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Hanaa','laaroussi',5,1,TO_DATE('1966/09/04', 'yyyy/mm/dd'),'+212163244847','Aliquam.auctor.velit@ametmassaQuisque.net',21134613,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Achraf','laarouchi',4,5,TO_DATE('1969/06/12', 'yyyy/mm/dd'),'+212311464583','magna@semperrutrum.co.uk',27808983,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Issam','rouijel',6,5,TO_DATE('1967/06/05', 'yyyy/mm/dd'),'+212444015975','conubia.nostra.per@mi.edu',14616435,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Oussama','kadouri',7,5,TO_DATE('1966/10/09', 'yyyy/mm/dd'),'+212303560582','Etiam.bibendum@arcu.co.uk',9497049,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ibrahim','akalay',8,1,TO_DATE('1983/06/30', 'yyyy/mm/dd'),'0680758946','sem.ut@sapienimperdiet.ca',122694184,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ahmed','Haddad',9,3,TO_DATE('1979/04/19', 'yyyy/mm/dd'),'0695028977','ac.risus@idnuncinterdum.org',48849970,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Abdelmalek','tazi',3,4,TO_DATE('1968/03/16', 'yyyy/mm/dd'),'0653952009','Sed.diam.lorem@vitaevelit.com',65249754,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Said','Aidan',5,2,TO_DATE('2000/03/25', 'yyyy/mm/dd'),'+212579358618','Donec.est.Nunc@malesuada.net',105345361,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Fadoua','yassine',8,6,TO_DATE('1993/10/08', 'yyyy/mm/dd'),'0658959862','vel.mauris@euismodetcommodo.co.uk',53928228,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Oualid','hajji',6,1,TO_DATE('1972/02/24', 'yyyy/mm/dd'),'+212435851317','molestie.in@vel.net',32433930,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Yaniss','sefri',4,6,TO_DATE('1965/07/23', 'yyyy/mm/dd'),'+212660468840','lectus.pede@InfaucibusMorbi.ca',84988104,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Halima','saqqat',8,1,TO_DATE('1999/03/29', 'yyyy/mm/dd'),'+212844064598','tempor.lorem@antedictumcursus.net',47637265,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Moussa','bamoune',5,4,TO_DATE('1977/11/19', 'yyyy/mm/dd'),'0656290907','arcu.eu.odio@esttemporbibendum.com',13105749,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Mustapha','hachimi',5,1,TO_DATE('1965/06/19', 'yyyy/mm/dd'),'+212027881194','Curabitur@magna.co.uk',10599598,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Naima','hachimi',2,4,TO_DATE('1979/04/14', 'yyyy/mm/dd'),'+212509000353','tellus@ligula.net',51812016,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Maroua','idrissi',7,4,TO_DATE('1982/08/21', 'yyyy/mm/dd'),'+212357304887','quis@vestibulum.edu',25678011,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Sadia','ait bouzad',8,1,TO_DATE('1990/08/28', 'yyyy/mm/dd'),'0685820164','quam@odiovel.com',62637559,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Safaa','benjelloun',3,3,TO_DATE('1967/10/24', 'yyyy/mm/dd'),'0660331023','auctor.velit@a.edu',8294849,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Mohamed','ben ali',9,5,TO_DATE('1967/08/31', 'yyyy/mm/dd'),'+212063300194','Curabitur.ut.odio@In.co.uk',40297800,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ayoub','ibrahimi',7,8,TO_DATE('2001/08/01', 'yyyy/mm/dd'),'0677290654','cubilia@magnis.edu',49091424,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Mouhcine','salah',5,6,TO_DATE('1982/05/28', 'yyyy/mm/dd'),'0618471189','urna@magnaaneque.edu',123425510,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Nadir','sebbagh',9,4,TO_DATE('1997/07/07', 'yyyy/mm/dd'),'+212202866492','laoreet.libero@urna.net',8937000,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Abdelkarim','charboun',2,5,TO_DATE('1999/10/08', 'yyyy/mm/dd'),'+212923387154','aliquam.eros.turpis@vestibulum.org',80510608,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Hamza','Rowan',7,3,TO_DATE('1963/01/18', 'yyyy/mm/dd'),'+212956553553','malesuada.fames@ligula.co.uk',51580770,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Rajaa','saidi',1,3,TO_DATE('1995/11/22', 'yyyy/mm/dd'),'0613550933','auctor.Mauris.vel@magnaet.com',25996594,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Salah','Laamar',1,3,TO_DATE('1960/09/09', 'yyyy/mm/dd'),'+212175785263','Curae.Phasellus.ornare@est.co.uk',122724446,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Bader Eddine','Abiri',1,4,TO_DATE('1985/10/01', 'yyyy/mm/dd'),'0606680515','pellentesque.Sed@loremac.com',66300625,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Khalifa','Shadi',1,1,TO_DATE('1984/07/16', 'yyyy/mm/dd'),'+212979104480','fermentum.arcu@semper.co.uk',52806880,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Amine','kaghat',1,8,TO_DATE('1996/08/18', 'yyyy/mm/dd'),'0691860542','Proin@facilisis.net',62915391,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ahmed','zaidi',1,4,TO_DATE('1982/11/22', 'yyyy/mm/dd'),'0612747688','rutrum.lorem@malesuadavelconvallis.edu',23633346,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Kaoutar','lmandjra',1,5,TO_DATE('1973/03/30', 'yyyy/mm/dd'),'0631329246','posuere.cubilia@cursusa.co.uk',106302126,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Redouane','chibi',1,8,TO_DATE('1973/03/30', 'yyyy/mm/dd'),'+212796096489','vestibulum@volutpat.net',69874490,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Morad','jalal eddine',1,4,TO_DATE('1993/06/20', 'yyyy/mm/dd'),'0621498240','penatibus@euerosNam.co.uk',54824671,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Saadia','aitona',1,3,TO_DATE('1978/01/03', 'yyyy/mm/dd'),'+212130329702','dictum.magna@sedliberoProin.co.uk',4673283,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Hamza','ahmar',1,2,TO_DATE('1990/09/26', 'yyyy/mm/dd'),'+212793753051','sociis.natoque@idmagnaet.com',66186651,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Mouad','el mazidi',1,8,TO_DATE('1985/01/11', 'yyyy/mm/dd'),'+212799276856','eros.Proin.ultrices@acrisus.com',98141565,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Naima','el mazni',1,8,TO_DATE('1983/10/09', 'yyyy/mm/dd'),'+212250393871','fringilla@Lorem.net',23618264,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Omar','ben hayoun',1,1,TO_DATE('1986/12/28', 'yyyy/mm/dd'),'0616978144','neque@venenatislacusEtiam.co.uk',53786894,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Ahmed','zain',1,3,TO_DATE('1986/07/24', 'yyyy/mm/dd'),'+212827193951','quis.pede@anteipsumprimis.org',67696364,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Lahcen','el fassi',1,3,TO_DATE('1984/09/06', 'yyyy/mm/dd'),'+212450180769','Donec.dignissim@congueIn.edu',30879005,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Abdelghafour','el fihri',1,8,TO_DATE('1969/08/04', 'yyyy/mm/dd'),'+212329880620','Suspendisse.ac@enim.ca',59311530,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Imane','chouafi',1,5,TO_DATE('1990/10/21', 'yyyy/mm/dd'),'+212461591058','id@vulputateposuere.org',73470746,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Imrane','el garai',1,5,TO_DATE('1995/04/22', 'yyyy/mm/dd'),'+212375791068','purus@elitsed.co.uk',9731107,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Salwa','zahraoui',1,7,TO_DATE('1962/08/15', 'yyyy/mm/dd'),'0684964448','vulputate@Pellentesque.org',118377780,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Anbar','bennis',1,4,TO_DATE('2000/07/09', 'yyyy/mm/dd'),'0694355972','eu.turpis.Nulla@aaliquetvel.org',78755794,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Yakout','Rima',1,6,TO_DATE('1965/11/17', 'yyyy/mm/dd'),'0642552806','mauris.Morbi@enimEtiam.com',10116389,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Brahim','buzidi',1,3,TO_DATE('1963/12/07', 'yyyy/mm/dd'),'0657013648','urna.Nunc@Nullamutnisi.org',43088283,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Imran','almaoui',1,1,TO_DATE('1963/10/27', 'yyyy/mm/dd'),'0608042571','Aenean.euismod.mauris@erosnonenim.co.uk',1583806,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Abdelali','tifak',1,3,TO_DATE('1977/09/13', 'yyyy/mm/dd'),'+212628957359','augue@fringillaDonecfeugiat.org',13637063,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Mohamed Ali','ammari',1,6,TO_DATE('1961/05/18', 'yyyy/mm/dd'),'0644103647','dictum.sapien@tinciduntpede.edu',79255198,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Nizar','farid',1,5,TO_DATE('1993/10/15', 'yyyy/mm/dd'),'0612981115','rhoncus.Nullam@Sednunc.org',120826386,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Mustafa','ammoure',1,4,TO_DATE('2001/06/11', 'yyyy/mm/dd'),'0681300120','non.dapibus@faucibusorci.edu',35804346,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Zouhair','damidi',1,2,TO_DATE('1962/09/16', 'yyyy/mm/dd'),'0652640156','dolor@aliquam.edu',66751393,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Rayane','amine',1,3,TO_DATE('1960/03/10', 'yyyy/mm/dd'),'0666529449','nec.ante.blandit@laoreetipsum.co.uk',59663216,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Oussama','daghbour',1,1,TO_DATE('1982/05/14', 'yyyy/mm/dd'),'0647708291','Duis.gravida@Suspendissedui.org',87231232,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Mohammad','boulhane',1,7,TO_DATE('1965/06/07', 'yyyy/mm/dd'),'+212204460018','Nam.ligula@hendreritconsectetuercursus.co.uk',45053667,'non');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Zaid','benjida',1,4,TO_DATE('1969/06/21', 'yyyy/mm/dd'),'0696338125','et@risusNunc.co.uk',17180816,'oui');
+INSERT INTO Donneur VALUES (ID_COUNTER.nextval, 'Abdelmoulla','belghazi',1,2,TO_DATE('1997/12/15', 'yyyy/mm/dd'),'+212974630300','euismod@Classaptenttaciti.edu',57336835,'oui');
+COMMIT;
+
+
+SELECT * FROM Donneur WHERE disponible = 'oui'
+
+SELECT * FROM Donneur WHERE disponible = 'oui' and id_ville = 1   ORDER BY id_donneur ASC
+
+SELECT * FROM Donneur natural join Ville natural join GroupeSanguin WHERE disponible = 'oui' and id_ville = 1   ORDER BY id_donneur ASC;
+
+
+ select  distinct t.id_ville , s.ville , s.total from  (SELECT ville , COUNT(distinct id_donneur) as total FROM Donneur  NATURAL JOIN Ville  WHERE disponible = 'oui' GROUP BY ville ORDER BY total DESC) s join (select * from Donneur natural join Ville ) t  on s.ville = t.ville order by s.total DESC;  

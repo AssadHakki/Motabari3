@@ -50,22 +50,8 @@
             // get donneur id stored in session
             final String id_donneur = session.getAttribute("id_donneur").toString();
 
-            /*
-            Method 1:
-            String req = "SELECT "+
-                "prenom," +
-                "nom,"+
-                "(SELECT region FROM Region WHERE id_region = d.id_region),"+
-                "(SELECT ville FROM Ville WHERE id_ville = d.id_ville),"+
-                "(SELECT groupe_sanguin FROM GroupeSanguin WHERE id_groupe_sanguin = d.id_groupe_sanguin),"+
-                "date_naissance,"+
-                "telephone,"+
-                "email,"+
-                "password,"+
-                "disponible"+
-                " FROM Donneur d  WHERE id_donneur = " + id_donneur;
-            */
-            String req = "SELECT * FROM Donneur NATURAL JOIN Region NATURAL JOIN Ville NATURAL JOIN GroupeSanguin WHERE id_donneur = " + id_donneur;
+         
+            String req = "SELECT * FROM Donneur NATURAL JOIN Ville NATURAL JOIN GroupeSanguin WHERE id_donneur = " + id_donneur;
             System.out.println(req);
             
             ResultSet R = Connexion.Seconnecter().createStatement().executeQuery(req);
@@ -73,7 +59,6 @@
 
             String prenom = R.getObject("prenom").toString();
             String nom = R.getObject("nom").toString();
-            String region = R.getObject("region").toString();
             String ville = R.getObject("ville").toString();
             String groupe_sanguin = R.getObject("groupe_sanguin").toString();
             String date_naissance = R.getObject("date_naissance").toString();
@@ -116,8 +101,8 @@
                 <div class="divider"></div>
 
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">   
-                    <div class="profile-section-title">Region - Ville</div>
-                    <div class="profile-region-ville"><%= region %> - <%= ville %></div>
+                    <div class="profile-section-title">Ville</div>
+                    <div class="profile-region-ville"><%= ville %></div>
                 </div>
 
                 <div class="divider"></div>
@@ -182,9 +167,9 @@
                         </div>
                     </div>
                     <div class="profile-modify-input-form">
-                        <div style="display: flex; flex-direction: column;  justify-content: center;">   
+                        <div style="display: flex; flex-direction: column;  justify-content: center; visibility: hidden;">   
                             <label>Region: </label>
-                            <input type="text" value=<%= "'" + region + "'" %> placeholder="Region..." readonly disabled/><!-- ignored - disabled -->
+                            <input type="text"  /><!-- ignored - disabled -->
                         </div>
                     </div>
                 </div>

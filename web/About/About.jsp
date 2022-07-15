@@ -17,7 +17,7 @@
 
 
         <div class="header-container">
-            Qui est MOTABARI3 ?
+            Qu'est-ce que c'est MOTABARI3 ?
         </div>
 
     <div class="container">
@@ -26,8 +26,8 @@
 
             <div class="right">
                 <div>
-                    <span style="color: #f05454"> Motabari3</span> est une plateforme fondée en 2022, dont l'objectif principal est de faciliter les procédures de recherche d'un donneur et de don de sang et de pouvoir les contacter le plus rapidement possible pour sauver des vies dans les cas critiques afin de réduire le nombre de décès attribués à la pénurie de sang en Maroc.<br><br>
-                    <span style="color: #f05454"> Motabari3</span> s'efforce de devenir la plateforme où les patients et les donneurs peuvent obtenir des informations sur les personnes vivant dans leur région qui peuvent être aidées et sauvées en donnant du sang.
+                    <strong> Motabari3</strong> est une plateforme fondée en 2022, dont l'objectif principal est de faciliter les procédures de recherche d'un donneur et de don de sang et de pouvoir les contacter le plus rapidement possible pour sauver des vies dans les cas critiques afin de réduire le nombre de décès attribués à la pénurie de sang en Maroc.<br><br>
+                    <strong> Motabari3</strong> s'efforce de devenir la plateforme où les patients et les donneurs peuvent obtenir des informations sur les personnes vivant dans leur région qui peuvent être aidées et sauvées en donnant du sang.
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
             <div class="right">
                 <div>
                     Nous sommes une initiative sociale purement non commerciale visant à faciliter les choses pour les personnes ayant besoin de donneurs de sang, afin que, par une intervention rapide, une vie puisse être sauvée. <br><br>
-                   N'hésitez pas à nous faire part de vos commentaires sur  <span style="color: #f05454"> Motabari3</span>. Contactez-nous à  <span style="color: #2242b7"> contact@motabari3.ma</span> si vous avez des questions ou avez besoin d'informations concernant notre projet.
+                   N'hésitez pas à nous faire part de vos commentaires sur  <strong> Motabari3</strong>. Contactez-nous à  <span style="color: #2242b7"> contact@motabari3.ma</span> si vous avez des questions ou avez besoin d'informations concernant notre projet.
                     
                 </div>
             </div>
